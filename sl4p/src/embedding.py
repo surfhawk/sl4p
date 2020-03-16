@@ -15,7 +15,8 @@ def _run_post_except_terminations(eh):
     while post_except_terminationf_list:
         func, args, kargs = post_except_terminationf_list.pop()
         try:
-            eh.logger.info("run post_except_termination_f`{}(), args-{}, kwargs-{}".format(func.__name__, str(args), str(kargs)))
+            eh.logger.info("run post_except_termination_f`{}(), args-{}, kwargs-{}".format(func.__name__, str(args),
+                                                                                           str(kargs)))
             
             func(*args, **kargs)
             eh.logger.info("Program  @%s  post except termination '%s' finished!" % (eh.b_uuid, func.__name__))
@@ -42,7 +43,7 @@ class EmbeddingHandler(object):
     end_t = None
     b_uuid = None
     
-    l4ppConfig = None
+    sl4pConfig = None
     argv0_bn = ''
     
     def __init__(self):
@@ -63,19 +64,19 @@ class EmbeddingHandler(object):
     
     @classmethod
     def register_embedding(cls, l4ppConfig):
-        cls.l4ppConfig = l4ppConfig
+        cls.sl4pConfig = l4ppConfig
         cls.argv0_bn = os.path.basename(sys.argv[0])
         cls.exitHandler = EmbeddingHandler()
         cls.exitHandler.hook()
         
-        cls.logger = get_root_logger(cls.l4ppConfig)
+        cls.logger = get_root_logger(cls.sl4pConfig)
         
         EmbeddingHandler.b_uuid = str(uuid.uuid4())[:8]
         EmbeddingHandler.st_t = time.time()
         tz_H = - time.timezone // 3600
         tz_M = ( - time.timezone // 60) % 60
         
-        if cls.l4ppConfig.stats_enabled:
+        if cls.sl4pConfig.stats_enabled:
             stat_start(l4ppConfig)
         
         cls.logger.info( "OPERATING TIMEZONE: {:+d}:{:02d}".format(tz_H, tz_M))
@@ -93,7 +94,8 @@ class EmbeddingHandler(object):
         elif cls.exitHandler.exc_value is not None:
             #traceback.print_tb(cls.exitHandler.tb)  # console print
             cls.logger.critical("Unexpected exception occurred!! = {}, Program  @{}  exited.".format(
-                str(cls.exitHandler.exc_type), cls.b_uuid), exc_info = (eh.exc_type, eh.exc_value, eh.tb))
+                                                                        str(cls.exitHandler.exc_type), cls.b_uuid),
+                                                                        exc_info = (eh.exc_type, eh.exc_value, eh.tb))
             if post_except_terminationf_list:
                 _run_post_except_terminations(cls)
         else:

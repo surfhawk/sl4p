@@ -6,7 +6,6 @@ import logging
 import logging.handlers
 from datetime import datetime as dt
 from functools import partial
-
 from .utils import make_foldertree_if_not_exists, cdprint
 from .const import _logfile_startTs_tpl, _byte_multiples, _default_encoding, _logfile_ext, _root_logger_name
 from .stats_performance import SimpleTimer
@@ -154,7 +153,8 @@ def get_custom_logger(config, snippet):
         
         make_foldertree_if_not_exists(logfile_savedir)
         
-        msgFormatter = get_messageFormatter(msgFormats.get(customConfig.enabled_snippet_dict.get(snippet)), timestamp_tpl)
+        msgFormatter = get_messageFormatter(msgFormats.get(customConfig.enabled_snippet_dict.get(snippet)),
+                                            timestamp_tpl)
         
         fileHandler = get_filehandler_by_config(config, logfile_path)
         fileHandler.setFormatter(msgFormatter)

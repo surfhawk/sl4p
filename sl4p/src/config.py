@@ -12,7 +12,7 @@ class AttributeDict(dict):
     __setattr__ = dict.__setitem__
     
 
-class L4ppConfig(object):
+class Sl4pConfig(object):
     __instance = None
     debugprt = 0
     stats_enabled = 0
@@ -35,24 +35,30 @@ class L4ppConfig(object):
     
     def load(self, cfg_param=''):
         
-        prt = L4ppConfig.debugprt
+        prt = Sl4pConfig.debugprt
         config = None
         
         if cfg_param:
             if isinstance(cfg_param, dict):  # DICT CONFIG
                 cdprint(prt, "Initialize sl4p Logging with dictionary= {}".format(cfg_param))
-                file_default_config = self.load_json_as_dict(L4ppConfig.file_default_cfg_filepath)
+                file_default_config = self.load_json_as_dict(Sl4pConfig.file_default_cfg_filepath)
                 config = override_dict(file_default_config, cfg_param)
-            
+
             elif os.path.exists(cfg_param):  # FILE CONFIG
+                cdprint(prt, "Initialize sl4p Logging with configfile= {}".format(cfg_param))
+                file_default_config = self.load_json_as_dict(Sl4pConfig.file_default_cfg_filepath)
+                file_config = self.load_json_as_dict(cfg_param)
+                config = override_dict(file_default_config, file_config)
+
+            else:   # APP CONFIG
                 cdprint(prt, "Initialize sl4p Logging with app config '{}'".format(cfg_param))
-                cdprint(prt, "Exist apps_default_cfg_file={} : {}".format(L4ppConfig.apps_default_cfg_filepath, 
-                                                                          os.path.exists(L4ppConfig.apps_default_cfg_filepath)))
-                cdprint(prt, "Exist apps_cfg_file={} : {}".format(L4ppConfig.apps_cfg_filepath,
-                                                                  os.path.exists(L4ppConfig.apps_cfg_filepath)))
-                
-                config = self.load_json_as_dict(L4ppConfig.apps_default_cfg_filepath)
-                all_apps_cfg = self.load_json_as_dict(L4ppConfig.apps_cfg_filepath)
+                cdprint(prt, "Exist apps_default_cfg_file={} : {}".format(Sl4pConfig.apps_default_cfg_filepath,
+                                                                          os.path.exists(Sl4pConfig.apps_default_cfg_filepath)))
+                cdprint(prt, "Exist apps_cfg_file={} : {}".format(Sl4pConfig.apps_cfg_filepath,
+                                                                  os.path.exists(Sl4pConfig.apps_cfg_filepath)))
+
+                config = self.load_json_as_dict(Sl4pConfig.apps_default_cfg_filepath)
+                all_apps_cfg = self.load_json_as_dict(Sl4pConfig.apps_cfg_filepath)
                 
                 app_cfg = all_apps_cfg.get('APPS').get(cfg_param, {})
                 cdprint(prt, "overriding app cfg : " + str(app_cfg))
@@ -63,9 +69,9 @@ class L4ppConfig(object):
             
         else:  # Not-declared CONFIG
             cdprint(prt, "Initialize sl4p Logging with default config. (No cfg_param passed)")
-            cdprint(prt, "Exist default_cfg_file={} : {}".format(L4ppConfig.file_default_cfg_filepath,
-                                                                 os.path.exists(L4ppConfig.file_default_cfg_filepath)))
-            config = self.load_json_as_dict(L4ppConfig.file_default_cfg_filepath)
+            cdprint(prt, "Exist default_cfg_file={} : {}".format(Sl4pConfig.file_default_cfg_filepath,
+                                                                 os.path.exists(Sl4pConfig.file_default_cfg_filepath)))
+            config = self.load_json_as_dict(Sl4pConfig.file_default_cfg_filepath)
                 
         self.defaultConfig = AttributeDict(config.get('DEFAULT'))
         self.customConfig = AttributeDict(config.get('CUSTOM_LOG'))

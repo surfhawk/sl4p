@@ -1,0 +1,22 @@
+{
+    "__version__": "C1",
+
+    "DEFAULT" : {
+        "logging_level": "DEBUG",
+        "logging_format": "detail",
+        "logfile_savedir": "W:/Investing/pydis/JupyterBase/DevWorkspace/sl4p/logs",
+        "logfile_name": "LOG.CODENAME_OMEGA",
+        
+        "purge_window_hours": 0.1,
+        "use_console_print": true
+    },
+    
+    "CUSTOM_LOG" : {
+        "logging_level": "DEBUG",
+        "use_custom_savedir": "W:/Investing/pydis/JupyterBase/DevWorkspace/sl4p/custom_logs",
+        "enabled_snippet_dict": {
+            "fruit/apple.py": "detail",
+            "banana.py": "adap"
+        }
+    }
+}
