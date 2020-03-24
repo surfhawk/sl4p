@@ -70,7 +70,7 @@ def get_filehandler_by_config(config, filepath):
 def get_sizedRotatingFileHandler(config, filepath, bytemultiple):
     sizedRotatingFileHandler = logging.handlers.RotatingFileHandler(
         filepath,
-        maxBytes=config.defaultConfig.save_period_interval * int(1024 * bytemultiple),
+        maxBytes=config.defaultConfig.save_period_interval * int(1024 ** bytemultiple),
         backupCount=config.defaultConfig.save_files_nlimit,
         encoding=_default_encoding
     )

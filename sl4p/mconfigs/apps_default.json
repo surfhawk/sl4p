@@ -8,7 +8,7 @@
         "logging_format": "detail",
         "logging_timestamp_tpl": "%Y.%m.%d-%H:%H:%S",
         
-        "logfile_savedir": "W:/Investing/pydis/JupyterBase/DevWorkspace/sl4p/logs",
+        "logfile_savedir": "C:/sl4p_logs",
         "logfile_name": "LOG.CODENAME_OMEGA",
         
         "save_period_type": "S",
@@ -22,7 +22,7 @@
     
     "CUSTOM_LOG" : {
         "logging_level": "DEBUG",
-        "use_custom_savedir": "W:/Investing/pydis/JupyterBase/DevWorkspace/sl4p/custom_logs",
+        "use_custom_savedir": "C:/sl4p_logs/custom_logs",
         "enabled_snippet_dict": {
             "fruit/apple.py": "detail",
             "banana.py": "adap"
