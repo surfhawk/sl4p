@@ -7,7 +7,7 @@
     "DEFAULT" : {
         "logging_level": "DEBUG",
         "logging_format": "detail",
-        "logging_timestamp_tpl": "%Y.%m.%d-%H:%H:%S",
+        "logging_timestamp_tpl": "%Y.%m.%d-%H:%M:%S",
         
         "logfile_savedir": "./sl4p_logs",
         "logfile_name": "LOG.CODENAME_OMEGA",
