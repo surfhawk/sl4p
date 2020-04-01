@@ -142,7 +142,7 @@ def get_custom_logger(config, snippet):
     custom_logger_name = '{}.{}'.format(_root_logger_name, snippet.replace('/','-').replace('.','_'))
     custom_logger = logging.getLogger(custom_logger_name)
     
-    if not len(custom_logger_name.handlers):
+    if not len(custom_logger.handlers):
         logfile_name = '{}.{}.{}'.format(defaultConfig.logfile_name.format(get_now_timestampStr()),
                                          custom_logger_name, _logfile_ext)
         custom_savedir = customConfig.use_custom_savedir
