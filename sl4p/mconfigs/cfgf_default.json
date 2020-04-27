@@ -33,7 +33,8 @@
     "MSG_FORMAT" : {
         "simple": "%(levelname)-7s| %(asctime)s :: %(message)s",
         "basic": "%(levelname)-7s| %(asctime)s - %(filename)-8s (%(lineno)4d) :: %(message)s",
-        "detail": "%(levelname)-7s| %(asctime)s [P%(process)d T%(thread)d] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
+        "detailid": "%(levelname)-7s| %(asctime)s [P%(process)d T%(thread)d] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
+        "detail": "%(levelname)-7s| %(asctime)s [P.%(processName)s %(threadName)s] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
         "adap0": "%(asctime)s - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)s - %(threadName)s ] Logger_%(name)s :: %(levelname)s \n %(filename)s - %(funcName)s (%(lineno)4d) - %(message)s \n",
         "adap1": "%(asctime)s - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)d - %(threadName)s ] Logger_%(name)s :: %(levelname)s \n %(filename)-10s :: %(funcName)-10s (%(lineno)4d) - %(message)s \n",
         "adap": "%(asctime)s - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)d - %(threadName)s ] <%(name)s> logger\n%(levelname)-7s| %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s\n",
