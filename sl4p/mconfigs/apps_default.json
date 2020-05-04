@@ -11,11 +11,11 @@
         "logfile_savedir": "C:/sl4p_logs",
         "logfile_name": "LOG.CODENAME_OMEGA",
         
-        "save_period_type": "S",
-        "save_period_interval": 10,
-        "save_files_nlimit": 5,
+        "save_period_type": "H",
+        "save_period_interval": 24,
+        "save_files_nlimit": 7,
         
-        "purge_window_hours": 0.1,
+        "purge_window_hours": 48,
         "mem_flush_period_seconds": 60,
         "use_console_print": true
     },
