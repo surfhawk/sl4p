@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from .src.api import sl4p, sl4p_try, sl4p_time, register_post_exception_terminationf, stat_start, stat_stop
+from .src.api import _example_config_dict
 
-__all__ = ['sl4p', 'sl4p_try', 'sl4p_time', 'register_post_exception_terminationf', 'stat_start', 'stat_stop']
+__all__ = ['sl4p', 'sl4p_try', 'sl4p_time', 'register_post_exception_terminationf', 'stat_start', 'stat_stop',
+           '_example_config_dict']
 
 
 __version__ = '1.2.0'
