@@ -7,7 +7,7 @@ from .embedding import register_post_exception_terminationf
 from .stats_performance import stat_start
 from .stats_performance import stat_stop
 
-_example_config_dict = {
+_sl4p_example_config_dict = {
     "DEFAULT": {
         "logging_level": "DEBUG",
         "logging_format": "detail",
