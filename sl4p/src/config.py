@@ -87,7 +87,7 @@ class Sl4pConfig(object):
     @classmethod
     def __getInstance(cls, *dummy_args):
         cdprint(cls.debugprt,
-                "WARNING :: Sl4p logger already initialized, but args={} are passed. It will be ignored ".format(
+                "WARNING :: Sl4p logger already initialized, but cfg_param={} are passed. It will be ignored.".format(
                     str(dummy_args)))
         return cls.__instance
     
