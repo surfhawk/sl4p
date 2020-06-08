@@ -76,7 +76,7 @@ def write_cpu_mem_usage(fp):
             
             _dt_str = dt.now().strftime("%Y.%m.%d %H:%M:%S.%F")[:-3]
             _cpu_percent = psutil.cpu_percent()
-            _memstat = psutil.vritual_memory()
+            _memstat = psutil.virtual_memory()
             _mem_percent = _memstat[2]
             _mem_usage = round(_memstat[3] / 1073741824.0, 2)
             f.write("{},{},{},{}\n".format(_dt_str, _cpu_percent, _mem_percent, _mem_usage))
