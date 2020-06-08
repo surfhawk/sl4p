@@ -1,5 +1,5 @@
 {
-    "__configver__": "C1",
+    "__configver__": "C2",
     "__CAUTION__": " *** PLEASE BE CAREFUL TO MODIFY THIE DEFAULT CONFIG FILE *** ",
     
     
@@ -13,17 +13,17 @@
         "logfile_name": "LOG.CODENAME_OMEGA",
         
         "save_period_type": "MB",
-        "save_period_interval": 300,
-        "save_files_nlimit": 5,
+        "save_period_interval": 50,
+        "save_files_nlimit": 20,
         
-        "purge_window_hours": 240,
-        "mem_flush_period_seconds": 60,
+        "purge_window_hours": 800,
         "use_console_print": true
     },
     
     "CUSTOM_LOG" : {
         "logging_level": "DEBUG",
         "use_custom_savedir": "./sl4p_logs/custom_logs",
+        "use_propagate": true,
         "enabled_snippet_dict": {
             "fruit/apple.py": "detail",
             "banana.py": "adap"

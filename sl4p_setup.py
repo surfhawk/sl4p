@@ -18,7 +18,7 @@ else:
 
 setup(
     name='sl4p',
-    version='1.2.0',
+    version='1.3.0',
     description='',
     long_description=long_description,
     long_description_content_type='text/markdown',

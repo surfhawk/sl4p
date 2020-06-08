@@ -2,6 +2,7 @@
 
 from .context import sl4p
 from .decorators import sl4p_try
+from .decorators import sl4p_try_exit
 from .decorators import sl4p_time
 from .embedding import register_post_exception_terminationf
 from .stats_performance import stat_start

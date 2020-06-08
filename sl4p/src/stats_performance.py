@@ -25,6 +25,11 @@ class SimpleTimer(object):
 class SimpleStatCpuMem(object):
     debugprt = 0
     mproc = None
+
+    stat_fp = None
+    _stat_start_dt = None
+    _stat_end_dt = None
+
     @classmethod
     def stat_start(cls, config):
         cls.debugprt = config.debugprt
@@ -32,11 +37,13 @@ class SimpleStatCpuMem(object):
         
         _ts = dt.now().strftime("%Y%m%d_%H%M%S")
         statfile_path = os.path.abspath(config.stats_file) if config.stats_file else ''
-        fp = os.path.abspath(statfile_path) if statfile_path else os.path.abspath("stats_cpumem_{}.csv".format(_ts))
+        _fp = os.path.abspath(statfile_path) if statfile_path else os.path.abspath("stats_cpumem_{}.csv".format(_ts))
+        cls.stat_fp = _fp
         
-        cdprint(cls.debugprt, "[ -- Dimensioning CPU and MEMORY usage --> {}  ]".format(fp))
+        cdprint(cls.debugprt, "[ -- Dimensioning CPU and MEMORY usage --> {}  ]".format(cls.stat_fp))
         
-        cls.mproc = Process(target=write_cpu_mem_usage, args=(fp,))
+        cls.mproc = Process(target=write_cpu_mem_usage, args=(cls.stat_fp,))
+        cls._stat_start_dt = dt.now()
         cls.mproc.start()
         time.sleep(2)
     
@@ -46,13 +53,23 @@ class SimpleStatCpuMem(object):
             time.sleep(3)
             cls.mproc.terminate()
             cdprint(cls.debugprt, "[ -- Dimensioning resource usage finished !!! -- ]")
+            cls._stat_end_dt = dt.now()
+            try:
+                stat_elapsed = (cls._stat_end_dt - cls._stat_start_dt).total_seconds()
+                with open(cls.stat_fp, 'a+') as f:
+                    f.write(",StatCpuMem Elapsed: {:.4f}s,\n".format(stat_elapsed))
+            except Exception as e:
+                cdprint(cls.debugprt,
+                        "Exception occurred on f`stat_stop !!  Writing elapsed time failed - '{}'".format(e))
+
+
 
 stat_start = SimpleStatCpuMem.stat_start
 stat_stop = SimpleStatCpuMem.stat_stop
 
 
 def write_cpu_mem_usage(fp):
-    with open(fp, 'w+') as f:
+    with open(fp, 'a+') as f:
         f.write("Timestamp,CPU_percent,MEM_percent,MEM_usage_GB\n")
         cnt = 0
         while True:

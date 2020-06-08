@@ -5,6 +5,7 @@ import atexit
 import traceback
 import time
 import uuid
+import logging
 from .getter import get_root_logger
 from .stats_performance import stat_start, stat_stop
 
@@ -27,6 +28,9 @@ def _run_post_except_terminations(eh):
         eh.logger.critical("Unexpected critical exception occurred on '%s'." % (func.__name__), exc_info = exc_info)
         eh.logger.critical("Program  @%s  post except termination failed." % (eh.b_uuid))
 
+    EmbeddingHandler.end_t = time.time()
+    eh.logger.info("Program  @%s  exception-exited.  <<%s>>  -----  Elapsed  %8.4f s\n" % (eh.b_uuid, eh.argv0_bn,
+                                                                                           eh.end_t - eh.st_t))
 
 def register_post_exception_terminationf(func, *f_args, **f_kargs):
     post_except_terminationf_list.append((func, f_args, f_kargs))
@@ -77,28 +81,28 @@ class EmbeddingHandler(object):
         tz_M = ( - time.timezone // 60) % 60
         
         if cls.sl4pConfig.stats_enabled:
-            stat_start(l4ppConfig)
-        
+            stat_start(cls.sl4pConfig)
+
         cls.logger.info( "OPERATING TIMEZONE: {:+d}:{:02d}".format(tz_H, tz_M))
         cls.logger.info( "Program  @{}  started.  <<{}>>".format(EmbeddingHandler.b_uuid, cls.argv0_bn))
-        cls.logger.debug("         └── argv[0] = {}".format(sys.argv[0]))
+        cls.logger.debug("         @@-- argv[0] = {}".format(sys.argv[0]))
         atexit.register(EmbeddingHandler.finalize_process)
-    
+
+
     @classmethod
     def finalize_process(cls):
-        stat_stop()
-        
         eh = cls.exitHandler
         if cls.exitHandler is None:
             pass
         elif cls.exitHandler.exc_value is not None:
             #traceback.print_tb(cls.exitHandler.tb)  # console print
-            cls.logger.critical("Unexpected exception occurred!! = {}, Program  @{}  exited.".format(
-                                                                        str(cls.exitHandler.exc_type), cls.b_uuid),
-                                                                        exc_info = (eh.exc_type, eh.exc_value, eh.tb))
+            cls.logger.critical("Unexpected exception occurred!! = {}, Program  @{}  checks post_except_terminations .."\
+                .format(str(cls.exitHandler.exc_type), cls.b_uuid), exc_info = (eh.exc_type, eh.exc_value, eh.tb))
             if post_except_terminationf_list:
                 _run_post_except_terminations(cls)
         else:
             EmbeddingHandler.end_t = time.time()
-            cls.logger.info("Program  %s  finished  <<%s>>  -----  Elapsed  %8.4f s" % (cls.b_uuid, cls.argv0_bn, 
-                                                                                        cls.end_t - cls.st_t))
+            cls.logger.info("Program  %s  finished  <<%s>>  -----  Elapsed  %8.4f s\n" % (cls.b_uuid, cls.argv0_bn,
+                                                                                          cls.end_t - cls.st_t))
+        stat_stop()
+        logging.shutdown()

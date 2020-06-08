@@ -162,6 +162,7 @@ def get_custom_logger(config, snippet):
         
         custom_logger.addHandler(fileHandler)
         custom_logger.setLevel(customConfig.logging_level.upper())
+        custom_logger.propagate = customConfig.get('use_propagate', True)
         
         disable_inheritance_on_logfile(custom_logger.handlers[0].stream)
         assign_simpleTimer_stubs(custom_logger)
