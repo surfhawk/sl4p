@@ -9,16 +9,18 @@ from .utils import cdprint
 
 
 class SimpleTimer(object):
-    def __init__(self, logger):
+    def __init__(self, logger, log_level='debug'):
         self.logger = logger
+        self.log_level = log_level.lower()
+        self.logging_func = getattr(logger, self.log_level)
     
     def start(self, tag=''):
         self.tm_uuid = str(uuid.uuid4())[:6]
         self.st_t = time.time()
-        self.logger.debug("    * Timer  %s---------- /%s  Started" % (" ({}) ".format(tag).rjust(60,'-') if tag else '-'*60, self.tm_uuid))
+        self.logging_func("    * Timer  %s---------- /%s  Started" % (" ({}) ".format(tag).rjust(60,'-') if tag else '-'*60, self.tm_uuid))
         
     def check(self, tag=''):
-        self.logger.debug("    * Timer  %s---------- /%s  Checked at  %10.4f s" % (" ({}) ".format(tag).rjust(60,'-') if tag else '-'*60, self.tm_uuid,
+        self.logging_func("    * Timer  %s---------- /%s  Checked at  %10.4f s" % (" ({}) ".format(tag).rjust(60,'-') if tag else '-'*60, self.tm_uuid,
                                                                                    time.time() - self.st_t))
 
 
@@ -40,7 +42,7 @@ class SimpleStatCpuMem(object):
         _fp = os.path.abspath(statfile_path) if statfile_path else os.path.abspath("stats_cpumem_{}.csv".format(_ts))
         cls.stat_fp = _fp
         
-        cdprint(cls.debugprt, "[ -- Dimensioning CPU and MEMORY usage --> {}  ]".format(cls.stat_fp))
+        cdprint(cls.debugprt, "[ -- Performance Test : CPU and MEMORY usage --> {}  ]".format(cls.stat_fp))
         
         cls.mproc = Process(target=write_cpu_mem_usage, args=(cls.stat_fp,))
         cls._stat_start_dt = dt.now()
@@ -52,7 +54,7 @@ class SimpleStatCpuMem(object):
         if cls.mproc:
             time.sleep(3)
             cls.mproc.terminate()
-            cdprint(cls.debugprt, "[ -- Dimensioning resource usage finished !!! -- ]")
+            cdprint(cls.debugprt, "[ -- Testing resource usage finished !!! -- ]")
             cls._stat_end_dt = dt.now()
             try:
                 stat_elapsed = (cls._stat_end_dt - cls._stat_start_dt).total_seconds()

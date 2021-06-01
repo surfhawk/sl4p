@@ -44,7 +44,7 @@ class Sl4pConfig(object):
                 file_default_config = self.load_json_as_dict(Sl4pConfig.file_default_cfg_filepath)
                 config = override_dict(file_default_config, cfg_param)
 
-            elif os.path.exists(cfg_param):  # FILE CONFIG
+            elif os.path.isfile(cfg_param) and os.path.splitext(cfg_param)[1] == '.json':  # FILE CONFIG
                 cdprint(prt, "Initialize sl4p Logging with configfile= {}".format(cfg_param))
                 file_default_config = self.load_json_as_dict(Sl4pConfig.file_default_cfg_filepath)
                 file_config = self.load_json_as_dict(cfg_param)

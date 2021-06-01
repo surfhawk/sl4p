@@ -35,8 +35,8 @@ def assign_simpleTimer_stubs(logger):
     setattr(logger, 'tstart', logger.simpleTimer.start)
     setattr(logger, 'tcheck', logger.simpleTimer.check)
     
-    def create_simpleTimer_with_logger(logger):
-        return SimpleTimer(logger)
+    def create_simpleTimer_with_logger(logger, log_level='debug'):
+        return SimpleTimer(logger, log_level)
     
     create_simpleTimer = partial(create_simpleTimer_with_logger, logger)
     setattr(logger, 'create_simpleTimer', create_simpleTimer)

@@ -61,8 +61,9 @@ def sl4p_try_exit(func):
 
 
 class sl4p_time(object):
-    def __init__(self, tag=''):
+    def __init__(self, tag='', log_level='debug'):
         self.tag = tag
+        self.log_level = log_level.lower()
         self.b_uuid = str(uuid.uuid4())[:8]
         
     def __call__(self, func):
@@ -74,14 +75,15 @@ class sl4p_time(object):
             callf_basename = os.path.basename(__func_file)
             func_name = func.__name__
             logger = sl4p.getLogger(__func_file)
+            logging_func = getattr(logger, self.log_level)
             
             st_t = time.time()
-            logger.debug("%s f`%s() %s@%s started" % (callf_basename, func_name,
+            logging_func("%s f`%s() %s@%s started" % (callf_basename, func_name,
                                                       "#{} ".format(self.tag) if self.tag else '',
                                                       self.b_uuid))
             _return = func(*args, **kwargs)
             end_t = time.time()
-            logger.debug("%s f`%s %s@%s finished  ----  Elapsed  %8.4f s" % (callf_basename, func_name,
+            logging_func("%s f`%s %s@%s finished  ----  Elapsed  %8.4f s\n" % (callf_basename, func_name,
                                                                              "#{} ".format(self.tag) if self.tag else '',
                                                                              self.b_uuid,
                                                                              end_t - st_t))
