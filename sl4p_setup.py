@@ -18,13 +18,13 @@ else:
 
 setup(
     name='sl4p',
-    version='1.3.2',
-    description='',
+    version='1.3.3',
+    description='Simple logger for python. Easy configuration and Multiprocess supported.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    author='Surfhawk',
+    author='surfhawk',
     author_email='surfhawk@naver.com',
-    url='https://github.com/TODO', #TODO
+    url='https://github.com/surfhawk/sl4p',
     python_requires='>=3.0',
     #py_modules=['sl4p'],
     packages=find_packages(exclude=['sl4p_examples']),
@@ -33,6 +33,8 @@ setup(
         'sl4p': ['*', 'mconfigs/*']
     },
     install_requires=[
+        "pywin32",
+        "psutil"
     ],
     license='S-BSD',
     classifiers=[
@@ -40,5 +42,5 @@ setup(
         'Topic :: System :: Logging',
         'Development Status :: 4 - Beta',
         'Programming Language :: Python :: 3.5'
-    ]
+    ],
 )

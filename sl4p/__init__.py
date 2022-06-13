@@ -6,7 +6,7 @@ __all__ = ['sl4p', 'sl4p_try', 'sl4p_time', 'sl4p_try_exit', 'register_post_exce
            'stat_start', 'stat_stop', '_sl4p_example_config_dict']
 
 
-__version__ = '1.3.2'
+__version__ = '1.3.3'
 __author__ = 'surfhawk@github.com'
 
 __doc__ = " Package 'sl4p' for make logging your python application easy."  + \
@@ -16,4 +16,5 @@ __version_changes__ = '\n @ Release Note @' \
                       '\n 1.0.0 :: First deployed release version' \
                       '\n 1.3.1 :: Add log_level for @sl4p_time decorator' \
                       '\n 1.3.2 :: Add log_level for SimpleTimer: logger.create_simpleTimer(), config bugfix' \
+                      '\n 1.3.3 :: override_dict bugfix (support python 3.9+)' \
                       '\n @@- Note End -@@'

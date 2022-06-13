@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 import os
 import glob
 import time
@@ -31,10 +32,11 @@ def make_foldertree_if_not_exists(folder_path):
         print('make_foldertree_if_not_exists', folder_path)
         os.makedirs(folder_path)
 
+
 # https://stackoverflow.com/questions/3232943/update-value-of-a-nested-dictionary-of-varying-depth
 # https://stackoverflow.com/questions/3387691/how-to-perfectly-override-a-dict
 
-def override_dict(original_dict, override_dict):
+def override_dict_lte_py38(original_dict, override_dict):
     def update(mdict, u):
         for k, v in u.items():
             if isinstance(v, collections.Mapping):
@@ -42,5 +44,24 @@ def override_dict(original_dict, override_dict):
             else:
                 mdict[k] = v
         return mdict
-    
+
     return update(original_dict, override_dict)
+
+
+def override_dict_gte_py39(original_dict, override_dict):
+    for (key, val) in override_dict.items():
+        a_vals = original_dict.get(key)
+        if a_vals:
+            original_dict[key] = a_vals | val
+        else:
+            original_dict[key] = val
+
+    return original_dict
+
+
+def override_dict(original_dict, override_dict):
+    python_version = sys.version_info
+    if (python_version.major >= 3) and (python_version.minor >= 9):
+        return override_dict_gte_py39(original_dict, override_dict)
+    else:
+        return override_dict_lte_py38(original_dict, override_dict)
