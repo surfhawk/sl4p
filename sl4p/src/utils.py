@@ -5,6 +5,7 @@ import glob
 import time
 import collections
 import logging
+import copy
 
 
 def cdprint(prt=False, msg='', *args):
@@ -31,6 +32,10 @@ def make_foldertree_if_not_exists(folder_path):
     if not os.path.exists(folder_path):
         print('make_foldertree_if_not_exists', folder_path)
         os.makedirs(folder_path)
+
+
+def get_os_userhome_dirpath():
+    return os.path.expanduser('~')
 
 
 # https://stackoverflow.com/questions/3232943/update-value-of-a-nested-dictionary-of-varying-depth
@@ -65,3 +70,11 @@ def override_dict(original_dict, override_dict):
         return override_dict_gte_py39(original_dict, override_dict)
     else:
         return override_dict_lte_py38(original_dict, override_dict)
+
+
+def replace_dict_key(dict_, old_key, new_key):
+    if new_key not in dict_ and old_key in dict_:
+        dict_[new_key] = copy.deepcopy(dict_[old_key])
+    if old_key in dict_:
+        del dict_[old_key]
+    return dict_

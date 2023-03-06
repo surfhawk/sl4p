@@ -1,3 +1,4 @@
+import platform
 from setuptools import setup, find_packages
 from os import path
 import sys
@@ -15,10 +16,13 @@ else:
     with open(path.join(readme_dir, "README.md"), encoding='utf-8') as f:  # for python 3
         long_description = f.read()
 
+requires = ['psutil']
+if 'windows' in platform.system().lower():
+    requires.append('pywin32')
 
 setup(
     name='sl4p',
-    version='1.3.3',
+    version='1.4.0.DEV',
     description='Simple logger for python. Easy configuration and Multiprocess supported.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -32,10 +36,7 @@ setup(
     package_data={
         'sl4p': ['*', 'mconfigs/*']
     },
-    install_requires=[
-        "pywin32",
-        "psutil"
-    ],
+    install_requires=requires,
     license='S-BSD',
     classifiers=[
         'Topic :: Utilities',

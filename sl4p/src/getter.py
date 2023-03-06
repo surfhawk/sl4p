@@ -11,7 +11,7 @@ from .const import _logfile_startTs_tpl, _byte_multiples, _default_encoding, _lo
 from .stats_performance import SimpleTimer
 
 
-def get_now_timestampStr():
+def get_now_dtStr():
     return dt.now().strftime(_logfile_startTs_tpl)
 
 
@@ -96,37 +96,40 @@ def get_timedRotatingFileHandler(config, filepath):
     return timedRotatingFileHandler
 
 
-def get_root_logger(config):
-    root_logger = logging.getLogger(_root_logger_name)
+def get_root_logger(config, logger_name = ''):
+    root_logger = logging.getLogger(logger_name if logger_name else _root_logger_name)
     
     if not len(root_logger.handlers):
-        defaultConfig = config.defaultConfig
+        logCfg = config.defaultConfig
         msgFormats = config.msgFormats
-        
-        logfile_name = '{}.{}.{}'.format(defaultConfig.logfile_name.format(get_now_timestampStr()),
-                                         _root_logger_name, _logfile_ext)
-        logfile_savedir = defaultConfig.logfile_savedir
+
+        logfile_name = '{}.{}.{}'.format(logCfg.logfile_name.format(get_now_dtStr()), _root_logger_name, _logfile_ext)
+        logfile_savedir = logCfg.logfile_savedir
         logfile_savedir = os.path.abspath(logfile_savedir)
-        timestamp_tpl = defaultConfig.logging_timestamp_tpl
+        timestamp_tpl = logCfg.logging_timestamp_tpl
         
         logfile_path = os.path.join(logfile_savedir, logfile_name)
         
         make_foldertree_if_not_exists(logfile_savedir)
         
-        msgFormatter = get_messageFormatter(msgFormats.get(defaultConfig.logging_format), timestamp_tpl)
+        msgFormatter = get_messageFormatter(msgFormats.get(logCfg.logging_format), timestamp_tpl)
         
         fileHandler = get_filehandler_by_config(config, logfile_path)
         fileHandler.setFormatter(msgFormatter)
+        fileHandler.setLevel(logCfg.logging_level.upper())
         cdprint(config.debugprt, "*Logger <{}> saving dir= {}\n|".format(_root_logger_name, logfile_savedir))
         
         root_logger.addHandler(fileHandler)
-        if defaultConfig.use_console_print:
+        if logCfg.use_console_print:
             consoleHandler = logging.StreamHandler()
-            consoleHandler.setFormatter(msgFormatter)
+            consoleMsgFormatter = get_messageFormatter(msgFormats.get(logCfg.get('console_format',
+                                                                                 logCfg.logging_format)), timestamp_tpl)
+            consoleHandler.setFormatter(consoleMsgFormatter)
+            consoleHandler.setLevel(logCfg.get('console_level', logCfg.logging_level).upper())
             root_logger.addHandler(consoleHandler)
         
         root_logger.propagate = False
-        root_logger.setLevel(defaultConfig.logging_level.upper())
+        root_logger.setLevel('DEBUG')
         
         disable_inheritance_on_logfile(root_logger.handlers[0].stream)
         assign_simpleTimer_stubs(root_logger)
@@ -135,16 +138,17 @@ def get_root_logger(config):
 
 
 def get_custom_logger(config, snippet):
-    defaultConfig = config.defaultCoonfig
+    defaultConfig = config.defaultConfig
     customConfig = config.customConfig
     msgFormats = config.msgFormats
-    
-    custom_logger_name = '{}.{}'.format(_root_logger_name, snippet.replace('/','-').replace('.','_'))
+
+    # assigning custom_logger_name as root-logger-name dot pre-fixed, does logging both root and custom.
+    custom_logger_name = '{}.{}'.format(_root_logger_name, snippet.replace('/','-'))
     custom_logger = logging.getLogger(custom_logger_name)
     
     if not len(custom_logger.handlers):
-        logfile_name = '{}.{}.{}'.format(defaultConfig.logfile_name.format(get_now_timestampStr()),
-                                         custom_logger_name, _logfile_ext)
+        logfile_name = '{}.{}.{}'.format(defaultConfig.logfile_name.format(get_now_dtStr()),
+                                         '{}.{}'.format(snippet.replace('/','-'), _root_logger_name), _logfile_ext)
         custom_savedir = customConfig.use_custom_savedir
         logfile_savedir = custom_savedir if custom_savedir else defaultConfig.logfile_savedir
         logfile_savedir = os.path.abspath(logfile_savedir)
@@ -152,7 +156,7 @@ def get_custom_logger(config, snippet):
         logfile_path = os.path.join(logfile_savedir, logfile_name)
         
         make_foldertree_if_not_exists(logfile_savedir)
-        
+
         msgFormatter = get_messageFormatter(msgFormats.get(customConfig.enabled_snippet_dict.get(snippet)),
                                             timestamp_tpl)
         
@@ -168,4 +172,3 @@ def get_custom_logger(config, snippet):
         assign_simpleTimer_stubs(custom_logger)
 
     return custom_logger
-

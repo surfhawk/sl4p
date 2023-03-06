@@ -1,0 +1,5 @@
+.idea/
+build/
+sl4p.egg-info/
+__pycache__/
+*/__pycache__/

@@ -1,43 +1,40 @@
 {
-    "__configver__": "C2",
+    "__configver__": "C4",
     "__CAUTION__": " *** PLEASE BE CAREFUL TO MODIFY THIE DEFAULT CONFIG FILE *** ",
-    
-    
 
-    "DEFAULT" : {
+
+    "LOG" : {
+        "use_console_print": true,
+        "console_level": "DEBUG",
+
         "logging_level": "DEBUG",
         "logging_format": "detail",
         "logging_timestamp_tpl": "%Y.%m.%d-%H:%M:%S",
-        
+
         "logfile_savedir": "./sl4p_logs",
-        "logfile_name": "LOG.CODENAME_OMEGA",
-        
+        "logfile_name": "",
+
         "save_period_type": "MB",
-        "save_period_interval": 50,
+        "save_period_interval": 100,
         "save_files_nlimit": 20,
-        
-        "purge_window_hours": 800,
-        "use_console_print": true
+
+        "purge_window_hours": 8800
     },
-    
-    "CUSTOM_LOG" : {
+
+    "SNIPPET_LOG" : {
         "logging_level": "DEBUG",
-        "use_custom_savedir": "./sl4p_logs/custom_logs",
+        "use_custom_savedir": "./sl4p_logs/snippet_logs",
         "use_propagate": true,
         "enabled_snippet_dict": {
-            "fruit/apple.py": "detail",
-            "banana.py": "adap"
         }
     },
     
     "MSG_FORMAT" : {
-        "simple": "%(levelname)-7s| %(asctime)s :: %(message)s",
-        "basic": "%(levelname)-7s| %(asctime)s - %(filename)-8s (%(lineno)4d) :: %(message)s",
-        "detailid": "%(levelname)-7s| %(asctime)s [P%(process)d T%(thread)d] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
-        "detail": "%(levelname)-7s| %(asctime)s [P.%(processName)s %(threadName)s] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
-        "adap0": "%(asctime)s - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)s - %(threadName)s ] Logger_%(name)s :: %(levelname)s \n %(filename)s - %(funcName)s (%(lineno)4d) - %(message)s \n",
-        "adap1": "%(asctime)s - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)d - %(threadName)s ] Logger_%(name)s :: %(levelname)s \n %(filename)-10s :: %(funcName)-10s (%(lineno)4d) - %(message)s \n",
-        "adap": "%(asctime)s - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)d - %(threadName)s ] <%(name)s> logger\n%(levelname)-7s| %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s\n",
-        "custom": ""
+        "simple": "%(asctime)s | %(levelname)-8s :: %(message)s",
+        "basic": "%(asctime)s | %(levelname)-8s - %(filename)-12s (%(lineno)4d) :: %(message)s",
+        "detailid": "%(asctime)s.%(msecs)03d | %(levelname)-8s [P%(process)d T%(thread)d] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
+        "detail": "%(asctime)s.%(msecs)03d | %(levelname)-8s [P.%(processName)s %(threadName)s] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
+        "adap": "%(asctime)s.%(msecs)03d - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)d - %(threadName)s ] <%(name)s> logger\n%(levelname)-8s| %(filename)-12s - %(funcName)-10s (%(lineno)4d) :: %(message)s\n",
+        "adap1": "%(asctime)s.%(msecs)03d - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)d - %(threadName)s ] Logger_%(name)s - %(levelname)-8s \n %(filename)-12s - %(funcName)-12s (%(lineno)4d) :: %(message)s \n"
     }
 }

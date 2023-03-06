@@ -1,23 +1,25 @@
 {
-    "__configver__": "APP_C2",
+    "__configver__": "APP_C4",
     
     "APPS": {
         "__help__": {
-            "DEFAULT": {
+            "LOG": {
                 "logging_level": "'DEBUG' 'INFO' 'WARNING' 'ERROR' 'CRITICAL' : define minimum level to log",
                 "logging_format": "'simple' 'basis' 'detail' 'adap' : select log msg format by detail",
                 "logfile_savedir": "'/path/to/your/log/files' : set directory to save log files",
-                "logfile_name": "'APP_NAME' : your app logfile's filename prefix ** MUST BE UNIQUE "
+                "logfile_name": "'APP_NAME' : your app logfile's filename prefix ** MUST BE UNIQUE IN APPS"
             }
         },
         
         "dev_test1": {
-            "DEFAULT": {
-                "logging_level": "DEBUG",
+            "LOG": {
+                "use_console_print": true,
+                "console_level": "DEBUG",
+
+                "logging_level": "INFO",
                 "logging_format": "detail",
-                "logfile_savedir": "apps_log",
                 "logfile_name": "dev_test1",
-                "use_console_print": true
+                "logfile_savedir": "./"
             },
             "NOTE": "@@@ 'dev_test1' is just sample APP. Please remove it."
         }
