@@ -1,6 +1,10 @@
 {
-    "__version__": "C1",
-    "DEFAULT" : {
+    "__configver__": "C4",
+
+    "LOG" : {
+        "use_console_print": true,
+        "console_level": "INFO",
+
         "logging_level": "DEBUG",
         "logging_format": "detail",
         "logging_timestamp_tpl": "%Y.%m.%d-%H:%M:%S:",
@@ -12,12 +16,10 @@
         "save_period_interval": 10,
         "save_files_nlimit": 5,
         
-        "purge_window_hours": 0.1,
-        "mem_flush_period_seconds": 60,
-        "use_console_print": true
+        "purge_window_hours": 0.1
     },
     
-    "CUSTOM_LOG" : {
+    "SNIPPET_LOG" : {
         "logging_level": "DEBUG",
         "use_custom_savedir": "C:/Workspace/sl4p_logs/custom_logs",
         "enabled_snippet_dict": {
@@ -25,7 +27,7 @@
             "banana.py": "adap"
         }
     },
-    
+
     "MSG_FORMAT" : {
         "simple": "%(levelname)-7s| %(asctime)s - %(message)s",
         "basic": "%(levelname)-7s| %(asctime)s - %(filename)-8s (%(lineno)4d) :: %(message)s",

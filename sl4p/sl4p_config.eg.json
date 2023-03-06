@@ -1,22 +1,13 @@
 {
-    "__version__": "C1",
+    "__configver__": "C4",
 
-    "DEFAULT" : {
+    "LOG" : {
+        "use_console_print": true,
         "logging_level": "DEBUG",
-        "logging_format": "detail",
+        "logging_format": "basic",
         "logfile_savedir": "C:/Workspace/sl4p_logs",
-        "logfile_name": "LOG.CODENAME_OMEGA",
+        "logfile_name": "LOG.OMEGA_SIMPLE",
         
-        "purge_window_hours": 0.1,
-        "use_console_print": true
-    },
-    
-    "CUSTOM_LOG" : {
-        "logging_level": "DEBUG",
-        "use_custom_savedir": "C:/Workspace/sl4p_logs/custom_logs",
-        "enabled_snippet_dict": {
-            "fruit/apple.py": "detail",
-            "banana.py": "adap"
-        }
+        "purge_window_hours": 0.1
     }
 }

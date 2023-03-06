@@ -10,6 +10,8 @@ from .getter import get_root_logger
 from .stats_performance import stat_start, stat_stop
 
 post_except_terminationf_list = []
+
+
 def _run_post_except_terminations(eh):
     exc_info = None
     func = None
@@ -32,9 +34,11 @@ def _run_post_except_terminations(eh):
     eh.logger.info("Program  @%s  exception-exited.  <<%s>>  -----  Elapsed  %8.4f s\n" % (eh.b_uuid, eh.argv0_bn,
                                                                                            eh.end_t - eh.st_t))
 
+
 def register_post_exception_terminationf(func, *f_args, **f_kargs):
     post_except_terminationf_list.append((func, f_args, f_kargs))
     return func
+
 
 # https://stackoverflow.com/questions/9741351/how-to-find-exit-code-or-reason-when-atexit-callback-is-called-in-python
 # TODO: Check with origin code...
@@ -78,7 +82,7 @@ class EmbeddingHandler(object):
         EmbeddingHandler.b_uuid = str(uuid.uuid4())[:8]
         EmbeddingHandler.st_t = time.time()
         tz_H = - time.timezone // 3600
-        tz_M = ( - time.timezone // 60) % 60
+        tz_M = (- time.timezone // 60) % 60
         
         if cls.sl4pConfig.stats_enabled:
             stat_start(cls.sl4pConfig)

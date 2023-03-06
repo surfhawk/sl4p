@@ -17,11 +17,12 @@ class SimpleTimer(object):
     def start(self, tag=''):
         self.tm_uuid = str(uuid.uuid4())[:6]
         self.st_t = time.time()
-        self.logging_func("    * Timer  %s---------- /%s  Started" % (" ({}) ".format(tag).rjust(60,'-') if tag else '-'*60, self.tm_uuid))
+        self.logging_func("    * Timer  %s---------- /%s  Started" % (
+            " ({}) ".format(tag).rjust(60, '-') if tag else '-' * 60, self.tm_uuid))
         
     def check(self, tag=''):
-        self.logging_func("    * Timer  %s---------- /%s  Checked at  %10.4f s" % (" ({}) ".format(tag).rjust(60,'-') if tag else '-'*60, self.tm_uuid,
-                                                                                   time.time() - self.st_t))
+        self.logging_func("    * Timer  %s---------- /%s  Checked at  %10.4f s" % (
+            " ({}) ".format(tag).rjust(60, '-') if tag else '-' * 60, self.tm_uuid, time.time() - self.st_t))
 
 
 class SimpleStatCpuMem(object):
@@ -63,7 +64,6 @@ class SimpleStatCpuMem(object):
             except Exception as e:
                 cdprint(cls.debugprt,
                         "Exception occurred on f`stat_stop !!  Writing elapsed time failed - '{}'".format(e))
-
 
 
 stat_start = SimpleStatCpuMem.stat_start

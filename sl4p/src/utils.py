@@ -12,11 +12,12 @@ def cdprint(prt=False, msg='', *args):
     if prt:
         print("{} {}".format(str(msg), ' '.join(map(str, args))))
 
+
 def purge_old_logfiles(l4pConfig):
     for logdir in l4pConfig.to_purge_dirs:
         oldfiles = glob.glob(os.path.join(logdir, "{}*".format(l4pConfig.defaultConfig.logfile_name.replace('{}', ''))))
-        #print(oldfiles)
-        
+        # print(oldfiles)
+
         for _oldf in oldfiles:
             if os.path.getctime(_oldf) < (time.time() - (l4pConfig.defaultConfig.purge_window_hours * 3600)):
                 try:
@@ -24,9 +25,10 @@ def purge_old_logfiles(l4pConfig):
                 except:
                     print("old logfile '{}'' could not be deleted !".format(_oldf))
 
-                    # TODO: 나중에 봐야함. 어떻게 해결하지?
-                    '''logger = logging.getLogger(pplogger._root_logger_name)  # TODO: is that possible importing recursively?
+                    # TODO: is that possible importing recursively for writing purging log?
+                    '''logger = logging.getLogger(pplogger._root_logger_name)
                     logger.exception("old logfile '{}'' could not be deleted !".format(_oldf))'''
+
 
 def make_foldertree_if_not_exists(folder_path):
     if not os.path.exists(folder_path):

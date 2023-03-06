@@ -2,12 +2,12 @@
 import json
 import os
 import sys
-import copy
 from imp import reload
 from .utils import cdprint, override_dict, replace_dict_key
 from .const import _apps_default_config_filepath, _apps_config_filepath, _default_encoding
-from .const import _V_default_config_version, _V_apps_config_version
+from .const import _config_version_key, _V_default_config_version, _V_apps_config_version
 from .embedding import EmbeddingHandler
+
 
 class AttributeDict(dict): 
     __getattr__ = dict.__getitem__
@@ -26,9 +26,6 @@ class Sl4pConfig(object):
     
     apps_default_cfg_filepath = _apps_default_config_filepath
     apps_cfg_filepath = _apps_config_filepath
-    
-    #print(default_cfg_file_path, os.path.exists(default_cfg_filepath))
-    #print(apps_cfg_filepath, os.path.exists(apps_cfg_filepath))
     
     def load_json_as_dict(cls, cfg_filepath):
         config_str = open(cfg_filepath).read()
@@ -49,10 +46,10 @@ class Sl4pConfig(object):
                 cdprint(debugprt, "Initialize sl4p Logging with configfile= {}".format(cfg_param))
                 file_default_config = self.load_json_as_dict(Sl4pConfig.file_default_cfg_filepath)
                 file_config = self.load_json_as_dict(cfg_param)
-                if _V_default_config_version != file_config.get('__configver__', ''):
+                if _V_default_config_version != file_config.get(_config_version_key, ''):
                     cdprint(1, ("\nWARNING :: Input config version ({}) is different from " +
                                "the sl4p library's standard config version ({}).").format(
-                        file_config.get('__configver__', ''), _V_default_config_version
+                        file_config.get(_config_version_key, ''), _V_default_config_version
                     ) + "\n        :: " +
                     "Please migrate your config. Otherwise some functions may not work or may malfunction.\n")
 
@@ -78,10 +75,10 @@ class Sl4pConfig(object):
                 config = self.load_json_as_dict(Sl4pConfig.apps_default_cfg_filepath)
                 all_apps_cfg = self.load_json_as_dict(Sl4pConfig.apps_cfg_filepath)
 
-                if _V_apps_config_version != all_apps_cfg.get('__configver__', ''):
+                if _V_apps_config_version != all_apps_cfg.get(_config_version_key, ''):
                     cdprint(1, ("\nWARNING :: Input app-config version ({}) is different from " +
                                "the sl4p library's standard app-config version ({}).").format(
-                        all_apps_cfg.get('__configver__', ''), _V_apps_config_version
+                        all_apps_cfg.get(_config_version_key, ''), _V_apps_config_version
                     ) + "\n        :: " +
                     "Please migrate your app-config. Otherwise some functions may not work or may malfunction.\n")
 
@@ -110,8 +107,7 @@ class Sl4pConfig(object):
             self.to_purge_dirs.append(self.customConfig.use_custom_savedir)
             
         cdprint(debugprt, "'sl4p' Logging initialized successfully.")
-    
-    
+
     @classmethod
     def __getInstance(cls, *dummy_args):
         cdprint(cls.debugprt,
@@ -135,7 +131,6 @@ class Sl4pConfig(object):
         cls.instance = cls.__getInstance
         EmbeddingHandler.register_embedding(cls.__instance)
         return cls.__instance
-
 
     def createInstance(self, cfg_param='', logger_name='', debugprt=0):
         """

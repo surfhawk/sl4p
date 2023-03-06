@@ -3,7 +3,7 @@ import os
 import time
 import uuid
 import logging
-from .utils import purge_old_logfiles
+from .utils import purge_old_logfiles, cdprint
 from .config import Sl4pConfig
 from .getter import get_root_logger
 from .getter import get_custom_logger
@@ -75,7 +75,7 @@ class sl4p(object):
                 Sl4pConfig.apps_default_cfg_filepath = os.path.join(apps_cfgdir, _apps_default_cfg_fn)
                 Sl4pConfig.apps_cfg_filepath = os.path.join(apps_cfgdir, _apps_cfg_fn)
             else:
-                cdprint(prt, "apps config-dir '{}' does not exist!".format(os.path.abspath(apps_cfgdir)) +
+                cdprint(debugprt, "apps config-dir '{}' does not exist!".format(os.path.abspath(apps_cfgdir)) +
                         "  sl4p will be configured with '$USER_HOME/sl4p_appscfg/apps_*.json'")
 
         if isinstance(cfg, Sl4pConfig):

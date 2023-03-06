@@ -59,7 +59,6 @@ def sl4p_try_exit(func):
     return wrapped
 
 
-
 class sl4p_time(object):
     def __init__(self, tag='', log_level='debug'):
         self.tag = tag
@@ -84,9 +83,8 @@ class sl4p_time(object):
             _return = func(*args, **kwargs)
             end_t = time.time()
             logging_func("%s f`%s %s@%s finished  ----  Elapsed  %8.4f s\n" % (callf_basename, func_name,
-                                                                             "#{} ".format(self.tag) if self.tag else '',
-                                                                             self.b_uuid,
-                                                                             end_t - st_t))
+                                                                            "#{} ".format(self.tag) if self.tag else '',
+                                                                            self.b_uuid, end_t - st_t))
             
             return _return
         
