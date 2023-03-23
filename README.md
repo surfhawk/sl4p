@@ -1,8 +1,7 @@
 # SL4P : simplest logging for your python
 
-=====
+==========
 
----
 
 **sl4p** is a logging library that makes it easy to introduce more production-focused logging into your python applications.    
 sl4p users need not know anything about the slightly complex built-in python logging, although sl4p uses built-in Python's logging internally.  
