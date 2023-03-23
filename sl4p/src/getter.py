@@ -143,12 +143,12 @@ def get_custom_logger(config, snippet):
     msgFormats = config.msgFormats
 
     # assigning custom_logger_name as root-logger-name dot pre-fixed, does logging both root and custom.
-    custom_logger_name = '{}.{}'.format(_root_logger_name, snippet.replace('/','-'))
+    custom_logger_name = '{}.{}'.format(_root_logger_name, snippet.replace('/', '-'))
     custom_logger = logging.getLogger(custom_logger_name)
     
     if not len(custom_logger.handlers):
         logfile_name = '{}.{}.{}'.format(defaultConfig.logfile_name.format(get_now_dtStr()),
-                                         '{}.{}'.format(snippet.replace('/','-'), _root_logger_name), _logfile_ext)
+                                         '{}.{}'.format(snippet.replace('/', '-'), _root_logger_name), _logfile_ext)
         custom_savedir = customConfig.use_custom_savedir
         logfile_savedir = custom_savedir if custom_savedir else defaultConfig.logfile_savedir
         logfile_savedir = os.path.abspath(logfile_savedir)

@@ -8,7 +8,7 @@
         "console_level": "DEBUG",
 
         "logging_level": "DEBUG",
-        "logging_format": "detail",
+        "logging_format": "basic",
         "logging_timestamp_tpl": "%Y.%m.%d-%H:%M:%S",
 
         "logfile_savedir": "./sl4p_logs",

@@ -1,0 +1,30 @@
+{
+    "__configver__": "C4",
+
+    "LOG": {
+        "use_console_print": true,
+        "console_level": "WARNING",
+        "console_format": "simple",
+
+        "logging_level": "DEBUG",
+        "logging_format": "basic",
+        "logging_timestamp_tpl": "%Y.%m.%d-%H:%M:%S",
+
+        "logfile_savedir": "logs",
+        "logfile_name": "EXAMPLE_1",
+
+        "save_period_type": "S",
+        "save_period_interval": 2,
+        "save_files_nlimit": 5,
+
+        "purge_window_hours": 0.1
+    },
+
+    "SNIPPET_LOG": {
+        "logging_level": "DEBUG",
+        "use_custom_savedir": "",
+        "enabled_snippet_dict": {
+            "example1sub.py": "detail"
+        }
+    }
+}

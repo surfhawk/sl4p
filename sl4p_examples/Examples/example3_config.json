@@ -1,0 +1,39 @@
+{
+    "__configver__": "C4",
+
+    "LOG": {
+        "console_level": "DEBUG",
+        "console_format": "adap",
+
+        "logging_level": "DEBUG",
+        "logging_format": "custom",
+        "logging_timestamp_tpl": "%Y.%m.%d-%H:%M:%S",
+
+        "logfile_savedir": "logs",
+        "logfile_name": "EXAMPLE_3_UTILS",
+        "save_period_type": "H",
+        "save_period_interval": 1,
+        "save_files_nlimit": 3,
+
+        "purge_window_hours": 48,
+        "mem_flush_period_seconds": 60,
+        "use_console_print": true
+    },
+
+    "SNIPPET_LOG": {
+        "logging_level": "DEBUG",
+        "use_custom_savedir": "",
+        "enabled_snippet_dict": {
+        }
+    },
+
+    "MSG_FORMAT": {
+        "simple": "%(levelname)-7s| %(asctime)s :: %(message)s",
+        "basic": "%(levelname)-7s| %(asctime)s - %(filename)-8s (%(lineno)4d) :: %(message)s",
+        "detail": "%(levelname)-7s| %(asctime)s [P.%(processName)s T.%(threadName)s] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
+        "adap": "%(asctime)s - %(relativeCreated)7d ms  [ P%(process)d - %(processName)s | T%(thread)d - %(threadName)s ]  <%(name)s> logger\n%(levelname)-7s| %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s\n",
+        "detail_id": "%(levelname)-7s| %(asctime)s [P%(process)d T%(thread)d] %(filename)-10s - %(funcName)-10s (%(lineno)4d) :: %(message)s",
+        "adap_old": "%(asctime)s - %(relativeCreated)7d ms [ P.%(process)d - %(processName)s | T.%(thread)d - %(threadName)s ] Logger_%(name)s :: %(levelname)s \n %(filename)-10s :: %(funcName)-10s (%(lineno)4d) - %(message)s \n",
+        "custom": "YOU CAN CUSTOMIZE YOUR LOG MESSAGE FORMAT. THIS IS 'custom' logging_format ----- %(message)s"
+    }
+}

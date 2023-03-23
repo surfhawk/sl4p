@@ -7,6 +7,12 @@ import collections
 import logging
 import copy
 
+python_version = sys.version_info
+if (python_version.major >= 3) and (python_version.minor >= 10):
+    from collections.abc import Mapping
+else:
+    from collections import Mapping
+
 
 def cdprint(prt=False, msg='', *args):
     if prt:
@@ -22,8 +28,8 @@ def purge_old_logfiles(l4pConfig):
             if os.path.getctime(_oldf) < (time.time() - (l4pConfig.defaultConfig.purge_window_hours * 3600)):
                 try:
                     os.remove(_oldf)
-                except:
-                    print("old logfile '{}'' could not be deleted !".format(_oldf))
+                except Exception as e:
+                    print("old logfile '{}'' could not be deleted !\n  ---> {}".format(os.path.abspath(_oldf), e))
 
                     # TODO: is that possible importing recursively for writing purging log?
                     '''logger = logging.getLogger(pplogger._root_logger_name)
@@ -43,35 +49,16 @@ def get_os_userhome_dirpath():
 # https://stackoverflow.com/questions/3232943/update-value-of-a-nested-dictionary-of-varying-depth
 # https://stackoverflow.com/questions/3387691/how-to-perfectly-override-a-dict
 
-def override_dict_lte_py38(original_dict, override_dict):
+def override_dict(original_dict, to_override_dict):
     def update(mdict, u):
         for k, v in u.items():
-            if isinstance(v, collections.Mapping):
+            if isinstance(v, Mapping):
                 mdict[k] = update(mdict.get(k, {}), v)
             else:
                 mdict[k] = v
         return mdict
 
-    return update(original_dict, override_dict)
-
-
-def override_dict_gte_py39(original_dict, override_dict):
-    for (key, val) in override_dict.items():
-        a_vals = original_dict.get(key)
-        if a_vals:
-            original_dict[key] = a_vals | val
-        else:
-            original_dict[key] = val
-
-    return original_dict
-
-
-def override_dict(original_dict, override_dict):
-    python_version = sys.version_info
-    if (python_version.major >= 3) and (python_version.minor >= 9):
-        return override_dict_gte_py39(original_dict, override_dict)
-    else:
-        return override_dict_lte_py38(original_dict, override_dict)
+    return update(original_dict, to_override_dict)
 
 
 def replace_dict_key(dict_, old_key, new_key):

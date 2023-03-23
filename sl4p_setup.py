@@ -22,7 +22,7 @@ if 'windows' in platform.system().lower():
 
 setup(
     name='sl4p',
-    version='1.4.0.DEV',
+    version='1.4.0',
     description='Simple logger for python. Easy configuration and Multiprocess supported.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -30,7 +30,7 @@ setup(
     author_email='surfhawk@naver.com',
     url='https://github.com/surfhawk/sl4p',
     python_requires='>=3.0',
-    #py_modules=['sl4p'],
+    # py_modules=['sl4p'],
     packages=find_packages(exclude=['sl4p_examples']),
     include_package_data=True,
     package_data={
