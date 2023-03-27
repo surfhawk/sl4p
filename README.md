@@ -77,15 +77,15 @@ The following table describes the available keys and their corresponding values 
     }
 }
 ```
-| Key               | Description                                                                                                                   | Available value (*default)                                                                                                                                  |
-|-------------------|:------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `use_console_print`   | Whether to print log messages to the console.                                                                                 | **Bool** (*) True, False                                                                                                                                    |
-| `console_level`   | The minimum level of logs to be printed in console.<br/> Logs below this level will not be printed.                           | (*) "DEBUG", "INFO", "WARNING",  "ERROR", "CRITICAL"                                                                                                        |
-| `console_format`  | The level of detail to include in the log message in console.                                                                 | "simple", (*) "basic", "detail", "adap"                                                                                                                     |
-| `logging_level`   | The minimum level of logs to be recorded.<br/> Logs below this level will not be recorded.                                    | (*) "DEBUG", "INFO", "WARNING",  "ERROR", "CRITICAL"                                                                                                        |
-| `logging_format`  | The level of detail to include in the log message in file.                                                                    | "simple", (*) "basic", "detail", "adap"                                                                                                                     |
-| `logfile_savedir` | The absolute path to the directory where log files will be saved. <br/> The path should be in either Windows or Linux format. | **String** : The OS-specific folder path <br/>windows ex) "E:\\\\Workspace\\\\sl4p_logs\\\\app-abc" <br/> linux ex) "/opt/my_appvar/data/sl4p_logs/app_abc" |
-| `logfile_name`    | The prefix of the log file name for your application. <br/> Sl4p will use this prefix to identify and purge old log files.    | **String** : OS-supported filename. <br/> ex) "LOG.your_app_name"                                                                                           |
+| Key               | Description                                                                                                                                       | Available value (*default)                                                                                                                                  |
+|-------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `use_console_print`   | Whether to print log messages to the console.                                                                                                     | **Bool** (*) True, False                                                                                                                                    |
+| `console_level`   | The minimum level of logs to be printed in console.<br/> Logs below this level will not be printed. If not be assigned, follow the logging_level. | (*) "DEBUG", "INFO", "WARNING",  "ERROR", "CRITICAL"                                                                                                        |
+| `console_format`  | The level of detail to include in the log message in console.  If not be assigned, follow the logging_format.                                     | "simple", (*) "basic", "detail", "adap"                                                                                                                     |
+| `logging_level`   | The minimum level of logs to be recorded.<br/> Logs below this level will not be recorded.                                                        | (*) "DEBUG", "INFO", "WARNING",  "ERROR", "CRITICAL"                                                                                                        |
+| `logging_format`  | The level of detail to include in the log message in file.                                                                                        | "simple", (*) "basic", "detail", "adap"                                                                                                                     |
+| `logfile_savedir` | The absolute path to the directory where log files will be saved. <br/> The path should be in either Windows or Linux format.                     | **String** : The OS-specific folder path <br/>windows ex) "E:\\\\Workspace\\\\sl4p_logs\\\\app-abc" <br/> linux ex) "/opt/my_appvar/data/sl4p_logs/app_abc" |
+| `logfile_name`    | The prefix of the log file name for your application. <br/> Sl4p will use this prefix to identify and purge old log files.                        | **String** : OS-supported filename. <br/> ex) "LOG.your_app_name"                                                                                           |
 There are many other options, see examples on Github.
 <br/>
 
@@ -120,7 +120,7 @@ C. **How to load logger in Jupyter**
 `__file__`, the first argument of getLogger, is used as an identifier in Snippet logging.  
 Instead, enter any string in Jupyter.
 ```python
-log = sl4p.getLogger('jupyter', cfg=logcfg_dict) as log:
+log = sl4p.getLogger('jupyter', cfg=logcfg_dict):
 log.info('Hello sl4p in jupyter!')
 ```
 
@@ -223,7 +223,8 @@ All contributions, bug reports, bug fixes, documentation improvements, enhanceme
 ***
 ## Release Note
 
-**(*) ver 1.4.0 :: Layered apps-config, Support console level&format, IndLogger, Enhance stability**  
+**(*) ver 1.4.1 :: Correct the docs, Change default config (console config has no initial values)**  
+ver 1.4.0 :: Layered apps-config, Support console level&format, IndLogger, Enhance stability**  
 ver 1.3.3linux :: excluding 'psutil' in requires for linux   
 ver 1.3.3 :: override_dict bugfix (support python 3.9+)  
 ver 1.3.2 :: Add log_level for SimpleTimer: logger.create_simpleTimer(), config bugfix  

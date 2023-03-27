@@ -22,7 +22,7 @@ if 'windows' in platform.system().lower():
 
 setup(
     name='sl4p',
-    version='1.4.0',
+    version='1.4.1',
     description='Simple logger for python. Easy configuration and Multiprocess supported.',
     long_description=long_description,
     long_description_content_type='text/markdown',

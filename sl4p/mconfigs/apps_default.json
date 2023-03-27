@@ -5,7 +5,6 @@
 
     "LOG" : {
         "use_console_print": true,
-        "console_level": "DEBUG",
 
         "logging_level": "DEBUG",
         "logging_format": "detail",
