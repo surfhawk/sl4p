@@ -1,7 +1,9 @@
 # SL4P : simplest logging for your python
 
-==========
-
+[![](https://img.shields.io/badge/pypi-1.4.2-007ec6)](https://pypi.org/project/sl4p/)
+[![](https://img.shields.io/badge/python-Min%203.0%20%7C%20Rec'd%203.6%2B-blue)](https://pypi.org/project/sl4p/)
+[![](https://img.shields.io/badge/license-BSD%20License-lightgrey)](https://pypi.org/project/sl4p/)
+[![](https://img.shields.io/badge/build-passing-brightgreen)](https://pypi.org/project/sl4p/)  
 
 **sl4p** is a logging library that makes it easy to introduce more production-focused logging into your python applications.    
 sl4p users need not know anything about the slightly complex built-in python logging, although sl4p uses built-in Python's logging internally.  
