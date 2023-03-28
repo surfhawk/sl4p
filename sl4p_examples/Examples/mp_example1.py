@@ -10,7 +10,9 @@ cfg = {
         "logging_format": "detail",
         "logging_level": "DEBUG",
         "logfile_name": "MP_EXAMPLE_1",
-        'logfile_savedir': 'mp_logs',
+        "logfile_savedir": "mp_logs",
+        "console_stdout": True,
+        "console_colorlog_kwargs": dict(no_color=True)
     }
 }
 
