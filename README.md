@@ -31,8 +31,9 @@ Here are the main features that are very easy to use:
 
 **Basic**
 - Logging that can be used right away with little to no setup required (by default config)
+- **Colored console log**: Warning, Error, and Exception are output in progressively more emphasized colors
 - ConfigFile: Single/multi-application logger settings by JSON files and python dictionary
-- **Auto purging**: log files can be divided and recorded by specified time period or filesize, and old ones can be automatically deleted.
+- **Auto purging**: log files can be divided and recorded by specified time period or filesize, and old ones can be automatically deleted
 - **Snippet log**: Logging to separate files for specific modules or subset of your Python program package
 - **Logging in multi-threaded/multi-process** (internally, without IPC, with recording to a same file)
 - Log of program context info: Timezone info, program execution path, total program run time, etc.
