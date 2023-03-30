@@ -31,7 +31,7 @@ Here are the main features that are very easy to use:
 
 **Basic**
 - Logging that can be used right away with little to no setup required (by default config)
-- **Colored console log**: Warning, Error, and Exception are output in progressively more emphasized colors
+- **Colored console log**: Warning, Error, and Exception are output in progressively more emphasized colors (Python 3.6+)
 - ConfigFile: Single/multi-application logger settings by JSON files and python dictionary
 - **Auto purging**: log files can be divided and recorded by specified time period or filesize, and old ones can be automatically deleted
 - **Snippet log**: Logging to separate files for specific modules or subset of your Python program package
