@@ -156,7 +156,7 @@ Remember to load your configuration only once (initial entry-point, recommended)
 
 ## Utils & Advanced
 
-The 'with-block' logging feature can measure elapsed time as DEBUG log and can also include a custom tag using `tag={yourTag}`.  
+The 'with-block' logging feature can measure elapsed time as DEBUG log and can also include a custom tag using `tag={TAG_NAME}`.  
 Here is an example:
 
 ```python
