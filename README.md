@@ -89,7 +89,7 @@ The following table describes the available keys and their corresponding values 
 | `logging_format`    | The level of detail to include in the log message in file.                                                                                        | "simple", (*) "basic", "detail", "adap"                                                                                                                     |
 | `logfile_savedir`   | The absolute path to the directory where log files will be saved. <br/> The path should be in either Windows or Linux format.                     | **String** : The OS-specific folder path <br/>windows ex) "E:\\\\Workspace\\\\sl4p_logs\\\\app-abc" <br/> linux ex) "/opt/my_appvar/data/sl4p_logs/app_abc" |
 | `logfile_name`      | The prefix of the log file name for your application. <br/> Sl4p will use this prefix to identify and purge old log files.                        | **String** : OS-supported filename. <br/> ex) "LOG.your_app_name"                                                                                           |
-There are many other options, see examples on Github.
+| . . . | _There are many other options, see sl4p_examples in this branch._ |
 <br/>
 
 ## Make logging
@@ -205,7 +205,7 @@ Traceback (most recent call last):
     a = 'ABCD' + None
 TypeError: can only concatenate str (not "NoneType") to str
 ```
-Rememter `@sl4p_try` will continue the program when excepted. But `@sl4p_try_exit` will terminate it.
+Remember `@sl4p_try` will continue the program when excepted, but `@sl4p_try_exit` will terminate it.
 <br/><br/>
 
 
