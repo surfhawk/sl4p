@@ -90,6 +90,10 @@ The following table describes the available keys and their corresponding values 
 | `logging_format`    | The level of detail to include in the log message in file.                                                                                        | "simple", (*) "basic", "detail", "adap"                                                                                                                     |
 | `logfile_savedir`   | The absolute path to the directory where log files will be saved. <br/> The path should be in either Windows or Linux format.                     | **String** : The OS-specific folder path <br/>windows ex) "E:\\\\Workspace\\\\sl4p_logs\\\\app-abc" <br/> linux ex) "/opt/my_appvar/data/sl4p_logs/app_abc" |
 | `logfile_name`      | The log file name for your application. <br/>(default: based on your python program's name)<br/> Sl4p will use this prefix to identify and purge old log files.                        | **String** : OS-supported filename. <br/> ex) "LOG.your_app_name"                                                                                           |
+| `save_period_type` | The time or size can be set as the criterion for dividing and saving log files. | **String** : "B", "KB", (*) "MB", "GB" by filesize<br/>"S", "M", "H", "D" by time |
+| `save_period_interval` | Specifies the magnitude to use for the selected save_period_type | **Int** (*) 100 |
+| `save_files_nlimit` | Whether to split and save logs up to a maximum number of files. (Delete excess ones from oldest to newest) | **Int** (*) 20 |
+| `purge_window_hours` | A window hours that deletes old log files (as much as the hours before the current time) | **Int** (*) 8800 |
 | `console_colorlog_kwargs` | The dictionary that is passed into initializing colorlog's ColoredFormatter as \*\*kwargs | **Dictionary** (*) colorlog's default (reference: https://github.com/borntyping/python-colorlog) |
 | . . . | _There are many other options, see sl4p_examples in this branch._ |
 <br/>
