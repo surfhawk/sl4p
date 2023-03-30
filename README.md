@@ -88,7 +88,8 @@ The following table describes the available keys and their corresponding values 
 | `logging_level`     | The minimum level of logs to be recorded.<br/> Logs below this level will not be recorded.                                                        | (*) "DEBUG", "INFO", "WARNING",  "ERROR", "CRITICAL"                                                                                                        |
 | `logging_format`    | The level of detail to include in the log message in file.                                                                                        | "simple", (*) "basic", "detail", "adap"                                                                                                                     |
 | `logfile_savedir`   | The absolute path to the directory where log files will be saved. <br/> The path should be in either Windows or Linux format.                     | **String** : The OS-specific folder path <br/>windows ex) "E:\\\\Workspace\\\\sl4p_logs\\\\app-abc" <br/> linux ex) "/opt/my_appvar/data/sl4p_logs/app_abc" |
-| `logfile_name`      | The prefix of the log file name for your application. <br/> Sl4p will use this prefix to identify and purge old log files.                        | **String** : OS-supported filename. <br/> ex) "LOG.your_app_name"                                                                                           |
+| `logfile_name`      | The log file name for your application. <br/>(default: based on your python program's name)<br/> Sl4p will use this prefix to identify and purge old log files.                        | **String** : OS-supported filename. <br/> ex) "LOG.your_app_name"                                                                                           |
+| `console_colorlog_kwargs` | The dictionary that is passed into initializing colorlog's ColoredFormatter as \*\*kwargs | **Dictionary** (*) colorlog's default (reference: https://github.com/borntyping/python-colorlog) |
 | . . . | _There are many other options, see sl4p_examples in this branch._ |
 <br/>
 
@@ -130,7 +131,7 @@ log.info('Hello sl4p in jupyter!')
 <br/>
 
 ### 2. Write a log message
-After loading your configuration, you can log messages anywhere in your application, even in another file, without passing the second parameter into getLogger.  
+After loading your configuration, you can log messages anywhere in your application, even in another file or modules, without passing the second parameter into getLogger.  
 Here are two ways to use logging:
 
 A. **'get-logger' style logging**
@@ -147,7 +148,7 @@ with sl4p(__file__) as log:
 <br/>
 
 That's it! Enjoy logging your application :)  
-Remember to load your configuration only once and log your messages everywhere.
+Remember to load your configuration only once (initial entry-point, recommended) and log your messages everywhere !
 
 <br/>
 
