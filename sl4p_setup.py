@@ -3,8 +3,8 @@ from setuptools import setup, find_packages
 from os import path
 import sys
 
-# python2 setup.py bdist_wheel
-# python3 setup.py bdist_wheel
+# python2 setup.py bdist_wheel --plat-name=manylinux1_x86_64
+# python3 setup.py bdist_wheel --plat-name=win_amd64
 # python -m twine upload .\dist\sl4p-*.whl
 
 readme_dir = path.dirname(__file__)
