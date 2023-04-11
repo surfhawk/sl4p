@@ -1,6 +1,6 @@
 # SL4P : simplest logging for your python
 
-[![](https://img.shields.io/badge/pypi-1.4.2-007ec6?logo=PyPI&logoColor=white)](https://pypi.org/project/sl4p/)
+[![](https://img.shields.io/badge/pypi-1.4.3-007ec6?logo=PyPI&logoColor=white)](https://pypi.org/project/sl4p/)
 [![](https://img.shields.io/badge/python-Min%203.0%20%7C%20Rec'd%203.6%2B-blue?logo=Python&logoColor=white)](https://pypi.org/project/sl4p/)
 [![](https://img.shields.io/badge/license-BSD%20License-lightgrey)](https://pypi.org/project/sl4p/)
 [![](https://img.shields.io/badge/build-passing-brightgreen)](https://pypi.org/project/sl4p/)  
@@ -234,7 +234,8 @@ All contributions, bug reports, bug fixes, documentation improvements, enhanceme
 ***
 ## Release Note
 
-**(*) ver 1.4.2 :: Coloring console log (by colorlog) and add related configs, Support console stdout'**  
+**(*) ver 1.4.3 :: Prevented logfile name starting with . (period)**  
+ver 1.4.2 :: Coloring console log (by colorlog) and add related configs, Support console stdout'  
 ver 1.4.1 :: Correct the docs, Change default config (console config has no initial values)  
 ver 1.4.0 :: Layered apps-config, Support console level&format, IndLogger, Enhance stability  
 ver 1.3.3linux :: excluding 'psutil' in requires for linux   

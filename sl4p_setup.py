@@ -5,6 +5,7 @@ import sys
 
 # python2 setup.py bdist_wheel
 # python3 setup.py bdist_wheel
+# python -m twine upload .\dist\sl4p-*.whl
 
 readme_dir = path.dirname(__file__)
 print("README doc's path : {}".format(path.join(readme_dir, "README.md")))
@@ -23,7 +24,7 @@ if 'windows' in platform.system().lower():
 
 setup(
     name='sl4p',
-    version='1.4.2',
+    version='1.4.3',
     description='Simple logger for python. Easy configuration and Multiprocess supported.',
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -105,6 +105,9 @@ def get_root_logger(config, logger_name = ''):
         msgFormats = config.msgFormats
 
         logfile_name = '{}.{}.{}'.format(logCfg.logfile_name.format(get_now_dtStr()), _root_logger_name, _logfile_ext)
+        if logfile_name.startswith('.'):
+            logfile_name = logfile_name[1:]
+
         logfile_savedir = logCfg.logfile_savedir
         logfile_savedir = os.path.abspath(logfile_savedir)
         timestamp_tpl = logCfg.logging_timestamp_tpl
@@ -164,6 +167,9 @@ def get_custom_logger(config, snippet):
     if not len(custom_logger.handlers):
         logfile_name = '{}.{}.{}'.format(defaultConfig.logfile_name.format(get_now_dtStr()),
                                          '{}.{}'.format(snippet.replace('/', '-'), _root_logger_name), _logfile_ext)
+        if logfile_name.startswith('.'):
+            logfile_name = logfile_name[1:]
+
         custom_savedir = customConfig.use_custom_savedir
         logfile_savedir = custom_savedir if custom_savedir else defaultConfig.logfile_savedir
         logfile_savedir = os.path.abspath(logfile_savedir)
