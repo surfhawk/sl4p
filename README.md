@@ -179,7 +179,7 @@ DEBUG  | 2019.11.14-22:03:44 - example2.py #myTag @adfd08e4 finished  ----  Elap
 <br/>
 
 **Decorator - @sl4p_time(tag={TAG_NAME})**<br/>
-You can also use the `@l4p_time(tag={TAG_NAME})` decorator to measure the execution time of a function and log it with DEBUG level:
+You can also use the `@sl4p_time(tag={TAG_NAME})` decorator to measure the execution time of a function and log it with DEBUG level:
 ```python
 @sl4p_time()  # Although you do not use tagging, l4p_time decorator must be written with () brackets.
 def my_function1():
