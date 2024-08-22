@@ -2,7 +2,10 @@
 import json
 import os
 import sys
-from imp import reload
+if 3 <= sys.version_info[0] and 1 <= sys.version_info[1]:
+    from importlib import reload
+else:
+    from imp import reload
 from .utils import cdprint, override_dict, replace_dict_key
 from .const import _apps_default_config_filepath, _apps_config_filepath, _default_encoding
 from .const import _config_version_key, _V_default_config_version, _V_apps_config_version
