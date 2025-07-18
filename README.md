@@ -235,7 +235,8 @@ All contributions, bug reports, bug fixes, documentation improvements, enhanceme
 ***
 ## Release Note
 
-**(*) ver1.4.4 :: Deprecate `imp` and replace it with `importlib` (imp is removed from python 3.12)**  
+**(*) ver1.4.5 :: Define pywin32 as static depd to comply PEP 508**  
+ver1.4.4 :: Deprecate `imp` and replace it with `importlib` (imp is removed from python 3.12)  
 ver 1.4.3 :: Prevented logfile name starting with . (period)  
 ver 1.4.2 :: Coloring console log (by colorlog) and add related configs, Support console stdout'  
 ver 1.4.1 :: Correct the docs, Change default config (console config has no initial values)  
