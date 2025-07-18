@@ -6,7 +6,7 @@ __all__ = ['sl4p', 'sl4p_try', 'sl4p_time', 'sl4p_try_exit', 'register_post_exce
            'stat_start', 'stat_stop', 'example_config_dict']
 
 
-__version__ = '1.4.4'
+__version__ = '1.4.5'
 __author__ = 'surfhawk@github.com'
 
 __doc__ = " Package 'sl4p' for make logging your python application easy." + \
@@ -22,4 +22,5 @@ __version_changes__ = '\n @ Release Note @' \
                       '\n 1.4.2 :: Coloring console log (by colorlog) and add related configs, Support console stdout' \
                       '\n 1.4.3 :: Prevented logfile name starting with . (period)' \
                       '\n 1.4.4 :: Deprecate `imp` and replace it with `importlib` (imp is removed from python 3.12)' \
+                      '\n 1.4.5 :: Define static dependencies compatible with the uv setup environment' \
                       '\n @@- Note End -@@'

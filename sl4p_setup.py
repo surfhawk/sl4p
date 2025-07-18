@@ -17,14 +17,16 @@ else:
     with open(path.join(readme_dir, "README.md"), encoding='utf-8') as f:  # for python 3
         long_description = f.read()
 
-requires = ['psutil', 'colorlog==6.7.0']
-if 'windows' in platform.system().lower():
-    requires.append('pywin32')
-    requires.append('colorama')
+requires = [
+    'psutil',
+    'colorlog==6.9.0',
+    'colorama',
+    'pywin32; platform_system=="Windows"',
+]
 
 setup(
     name='sl4p',
-    version='1.4.4',
+    version='1.4.5',
     description='Simple logger for python. Easy configuration and Multiprocess supported.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -39,7 +41,7 @@ setup(
         'sl4p': ['*', 'mconfigs/*']
     },
     install_requires=requires,
-    license='S-BSD',
+    license='BSD',
     classifiers=[
         'Topic :: Utilities',
         'Topic :: System :: Logging',
